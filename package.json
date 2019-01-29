@@ -2,7 +2,11 @@
   "name": "react-test",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "flow": "flow"
+  },
   "dependencies": {
+    "flow-bin": "^0.91.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts": "2.1.3"
