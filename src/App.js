@@ -33,6 +33,9 @@ pace (min/km)
 distance - distance passed since workout start (km)
 For test project set up a client-side mock that uses interval timer to simulate 30 minute workout with constant speed 9 kph, and calories burn rate to be 0.1875 cal/sec.
 
+Two instances of application opened in two tabs of the same browser should sync page
+location and entertainment video selection.
+i.e navigating to entertainment view tab in app instance 1 switches app instance 2 to entertainment view as well
  */
 
 class App extends Component<void, State> {
