@@ -1,30 +1,31 @@
 body, .root {
-  background: #000000;
-  height: 100%;
-  width: 100%;
-  margin:0;
-  padding:0;
+    background: #000000;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 
 .App {
-  background: white;
-  position: relative;
-  display:flex;
-  flex-direction: column;
+    background: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 /* TABBAR */
 
 .Tabbar {
-  flex: 1;
+    flex: 1;
 }
+
 .Tabbar__Button {
-  flex:1;
+    flex: 1;
 }
 
 /* TABS */
 
 .Tab {
-  flex: 10;
+    flex: 10;
 }

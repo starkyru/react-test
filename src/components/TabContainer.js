@@ -1,16 +1,23 @@
 // @flow
 
-import React, { Component } from 'react';
+import React from 'react';
 import {DashboardTab} from './DashboardTab';
 import {EntertainmentTab} from './EntertainmentTab';
-import {SelectTab} from './SelectTab'
-import type {Tabs} from ''
+import {SelectTab} from './SelectTab';
+import type {Tabs} from '';
 
 type Props = {
   selectedTab: Tabs
 };
 
-const TabContainer = ({selectedTab}:Props)=>{
+/**
+ * Shows selected tab
+ * @param selectedTab
+ * @returns {*}
+ * @constructor
+ */
+const TabContainer = ({selectedTab}: Props) => {
+  console.log(selectedTab);
   return (
     <>
       {selectedTab === 'select' && <SelectTab/>}
@@ -18,6 +25,6 @@ const TabContainer = ({selectedTab}:Props)=>{
       {selectedTab === 'entertainment' && <EntertainmentTab/>}
     </>
   );
-}
+};
 
-export { TabContainer };
+export {TabContainer};
