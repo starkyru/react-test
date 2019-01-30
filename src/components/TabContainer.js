@@ -1,10 +1,12 @@
 // @flow
 
 import React from 'react';
+import {connect} from 'react-redux';
 import {DashboardTab} from './DashboardTab';
 import {EntertainmentTab} from './EntertainmentTab';
 import {SelectTab} from './SelectTab';
-import {TABS, type Tab} from '../utils/const';
+import {type Tab} from '../utils/const';
+import type {State} from '../redux/reducers';
 
 type Props = {
   selectedTab: Tab
@@ -16,7 +18,7 @@ type Props = {
  * @returns {*}
  * @constructor
  */
-const TabContainer = ({selectedTab}: Props) => {
+const Tabs = ({selectedTab}: Props) => {
   console.log(selectedTab);
   return (
     <>
@@ -26,5 +28,21 @@ const TabContainer = ({selectedTab}: Props) => {
     </>
   );
 };
+
+/*
+Container
+ */
+
+const mapStateToProps = (state: State /*, ownProps*/) => {
+  return {
+    selectedTab: state.navigation.tab,
+  };
+};
+
+const TabContainer = connect(
+  mapStateToProps,
+  null,
+)(Tabs);
+
 
 export {TabContainer};

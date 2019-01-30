@@ -1,7 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import type {Tab} from '../redux/reducers/navigation';
+import {connect} from 'react-redux';
+import type {Tab} from '../utils/const';
+import {TABS} from '../utils/const';
+import {setTab} from '../redux/actions/navigation';
 
 type TabbarCallback = (id: Tab)=>void;
 type TabbarButtonProps = {
@@ -30,18 +33,30 @@ const TabbarButton = ({id, onClick, children}: TabbarButtonProps) => {
  * Tabbar
  */
 type TabbarProps = {
-  onClick: TabbarCallback,
+  setTab: typeof setTab,
 };
 
-const Tabbar = ({onClick}: TabbarProps) => {
+const Tabbar = ({onClick, setTab}: TabbarProps) => {
+  const handleClick = (id: Tab) => {
+    setTab(id);
+  };
+
   return (
     <div className="Tabbar">
-      <TabbarButton id={'dashboard'} onClick={onClick}>Dashboard</TabbarButton>
-      <TabbarButton id={'select'} onClick={onClick}>Entertainment Select</TabbarButton>
-      <TabbarButton id={'entertainment'} onClick={onClick}>Entertainment View</TabbarButton>
+      {Object.keys(TABS).map(id =>
+        <TabbarButton key={id} id={id} onClick={handleClick}>{TABS[id]}</TabbarButton>,
+      )}
+      {/*<TabbarButton id={'select'} onClick={onClick}>Entertainment Select</TabbarButton>*/}
+      {/*<TabbarButton id={'entertainment'} onClick={onClick}>Entertainment View</TabbarButton>*/}
     </div>
   );
 };
 
-export {Tabbar};
-export type {Tab};
+const mapDispatchToProps = {setTab};
+
+const TabbarContainer = connect(
+  null,
+  mapDispatchToProps,
+)(Tabbar);
+
+export {TabbarContainer as Tabbar};

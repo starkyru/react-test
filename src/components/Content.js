@@ -4,29 +4,17 @@ import React, {Component} from 'react';
 
 import {TabContainer} from './TabContainer';
 import {Tabbar} from './Tabbar';
-import type {Tab} from './Tabbar';
-
-type State = {
-  selectedTab: Tab,
-}
+import type {Tab} from '../utils/const';
 
 /**
  * App content itself
  */
-class Content extends Component<*, State> {
-  state = {
-    selectedTab: 'dashboard',
-  };
-
-  handleTabbarClick = (id: Tab) => {
-    this.setState({selectedTab: id});
-  };
-
+class Content extends Component<*, *> {
   render() {
     return (
       <>
-        <TabContainer selectedTab={this.state.selectedTab}/>
-        <Tabbar onClick={this.handleTabbarClick}/>
+        <TabContainer/>
+        <Tabbar/>
       </>
     );
   }
