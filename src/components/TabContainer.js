@@ -4,10 +4,10 @@ import React from 'react';
 import {DashboardTab} from './DashboardTab';
 import {EntertainmentTab} from './EntertainmentTab';
 import {SelectTab} from './SelectTab';
-import type {Tabs} from '';
+import {TABS, type Tab} from '../utils/const';
 
 type Props = {
-  selectedTab: Tabs
+  selectedTab: Tab
 };
 
 /**

@@ -1,13 +1,13 @@
 // @flow
 
-import React, {Component} from 'react';
-
-type Tab = 'select' | 'entertainment' | 'dashboard';
+import * as React from 'react';
+import type {Tab} from '../redux/reducers/navigation';
 
 type TabbarCallback = (id: Tab)=>void;
 type TabbarButtonProps = {
   id: Tab,
   onClick: TabbarCallback,
+  children?: React.Node,
 };
 
 /**
