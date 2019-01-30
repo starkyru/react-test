@@ -1,68 +1,41 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ Using react or react+redux write a single page treadmill UI application that follows requirements:
+* Only support for Chrome 71 is required
+& Application content area should be of 1024:600 aspect ratio, that fits all the available
+browser window space. Have black area on top/bottom or left/right of content area when browser window aspect ratio doesn’t match. All the elements within content area and all the spacing should scale as well
+* Application gets workout state update from server every 500ms in following format: 
+```{
+"duration": 9.2, "duration_countdown": 3590.8, "calories": 0.66,
+"speed": 4.82,
+"grade": 0.0,
+"heart_rate": 127.0,
+"pace": 12.42,
+"distance": 1.2,
+}
+```
 
-## Available Scripts
+duration - time since workout started (in seconds), increases by 0.5 with every sample duration_countdown - workout time remaining (seconds), decreases by 0.5 with every sample
+speed - (kph)
+grade (%)
+heart_rate (bpm)
+pace (min/km)
+distance - distance passed since workout start (km)
 
-In the project directory, you can run:
+For test project set up a client-side mock that uses interval timer to simulate 30 minute workout with constant speed 9 kph, and calories burn rate to be 0.1875 cal/sec.
+* Content area should have tab bar at the bottom with three tabs
 
-### `npm start`
+* Dashboard (tab1)
+This tab should display name - value list with workout stat values. There also should be a toggle between Metric and Imperial unit system. When Imperial unit system is selected speed should be converted to mph, pace to min/mile and distance to miles
+speed, grade should be formatted with 1 decimal place, duration and duration_countdown as hh:mm:ss. pace as mm:ss, distance - two decimal places, heart_rate and calories - displayed as floored integer.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Entertainment Select (tab2)
+This tab should have dropdown to select from several video files and button “Select” next to it. There should be preview region below the dropdown. As apply is clicked the video should be autoplayed in the preview region.
+If user clicks the video preview area after the source was selected it should navigate to the “Entertainment View” tab
+* Entertainment View (tab3)
+This tab should have video element taking all the content above the tab bar. It should play the same video source selected on tab2. Video playback should not restart on switching between tab2 and tab3, only video element size should increase. Also if video source is selected and user switches to “Dashboard” tab, video gets hidden but audio should keep playing.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+#####Optional
+These are not necessary but becomes a plus
+* Two instances of application opened in two tabs of the same browser should sync page
+location and entertainment video selection.
+i.e navigating to entertainment view tab in app instance 1 switches app instance 2 to entertainment view as well
+● Using type checking with Flow or Typescript
