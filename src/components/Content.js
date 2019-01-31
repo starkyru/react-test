@@ -4,12 +4,17 @@ import React, {Component} from 'react';
 
 import {TabContainer} from './TabContainer';
 import {Tabbar} from './Tabbar';
-import type {Tab} from '../utils/const';
+import {startFakeApi} from '../redux/actions/status';
+import {connect} from 'react-redux';
 
 /**
  * App content itself
  */
 class Content extends Component<*, *> {
+  componentDidMount(): void {
+    this.props.startFakeApi();
+  }
+
   render() {
     return (
       <>
@@ -20,4 +25,11 @@ class Content extends Component<*, *> {
   }
 }
 
-export {Content};
+const mapDispatchToProps = {startFakeApi};
+
+const ContentContainer = connect(
+  null,
+  mapDispatchToProps,
+)(Content);
+
+export {ContentContainer as Content};

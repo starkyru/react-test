@@ -4,7 +4,9 @@
 browser window space. Have black area on top/bottom or left/right of content area when browser window aspect ratio doesn’t match. All the elements within content area and all the spacing should scale as well
 * Application gets workout state update from server every 500ms in following format: 
 ```{
-"duration": 9.2, "duration_countdown": 3590.8, "calories": 0.66,
+"duration": 9.2, 
+"duration_countdown": 3590.8,
+ "calories": 0.66,
 "speed": 4.82,
 "grade": 0.0,
 "heart_rate": 127.0,

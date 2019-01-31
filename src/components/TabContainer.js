@@ -19,7 +19,6 @@ type Props = {
  * @constructor
  */
 const Tabs = ({selectedTab}: Props) => {
-  console.log(selectedTab);
   return (
     <>
       {selectedTab === 'select' && <SelectTab/>}

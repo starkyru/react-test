@@ -1,7 +1,5 @@
 // @flow
 
-import React from 'react';
-
 /**
  * Application aspect ratio
  * @type {number}

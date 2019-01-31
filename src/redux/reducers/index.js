@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { NavigationReducer } from './navigation';
+import {StatusReducer} from './status';
 
 const rootReducer = combineReducers({
-  navigation: NavigationReducer
+  navigation: NavigationReducer,
+  status: StatusReducer
 });
 
 type Reducers = typeof rootReducer;
