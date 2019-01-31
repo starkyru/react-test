@@ -14,7 +14,7 @@ const createReducer = <State, Action>(
     // $FlowFixMe
     return handlers.hasOwnProperty(action.type)
       ? // $FlowFixMe
-      handlers[action.type](state, action)
+        handlers[action.type](state, action)
       : state;
   };
 };

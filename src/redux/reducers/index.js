@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { NavigationReducer } from './navigation';
-import {StatusReducer} from './status';
+import { StatusReducer } from './status';
 
 const rootReducer = combineReducers({
   navigation: NavigationReducer,
-  status: StatusReducer
+  status: StatusReducer,
 });
 
 type Reducers = typeof rootReducer;
@@ -14,4 +14,4 @@ type State = $ObjMap<Reducers, $ExtractFunctionReturn>;
 
 export type { rootReducer as RootReducer, State };
 
-export {rootReducer}
+export { rootReducer };

@@ -1,14 +1,14 @@
 // @flow
 
-import React, {Component} from 'react';
-import {Provider} from 'react-redux';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
 
 import './App.css';
 
-import {Content} from './components/Content';
-import {ASPECT_RATIO} from './utils/const';
-import {ResizeContainer} from './components/ResizeContainer';
-import {store} from './redux/store';
+import { Content } from './components/Content';
+import { ASPECT_RATIO } from './utils/const';
+import { ResizeContainer } from './components/ResizeContainer';
+import { store } from './redux/store';
 
 /*
 TODO:
@@ -45,4 +45,4 @@ class App extends Component<void, void> {
   }
 }
 
-export default App;
+export { App };

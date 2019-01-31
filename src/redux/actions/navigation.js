@@ -1,7 +1,7 @@
 /**
  * Navigation actions
  */
-import type {Tab} from '../reducers/navigation'
+import type { Tab } from '../reducers/navigation';
 
 const SET_TAB = 'SET_TAB';
 
