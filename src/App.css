@@ -4,28 +4,183 @@ body, .root {
     width: 100%;
     margin: 0;
     padding: 0;
+    font-size: 4vmin;
 }
 
 
 .App {
-    background: white;
+    background: #040F1F;
+    color: white;
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.App + div {
+    display: flex;
+}
+
+/* DASHBOARD */
+
+.Dashboard {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.Dashboard div {
+    display: flex;
+}
+
+.boxcolumn {
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+
+.boxcolumn > div {
+    margin-top: 1vmin;
+}
+
+.boxcolumn > div:first-child {
+    margin-top: 0;
+}
+
+.bigbox {
+    flex: 2;
+    flex-direction: column;
+    background: #0A1427;
+    border-radius: 1vmin;
+    margin-right: 1vmin;
+    margin-left: 1vmin;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallbox {
+    flex: 1;
+    flex-direction: column;
+    background: #0D1323;
+    border-radius: 1vmin;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+span.label {
+    display: block;
+    margin-bottom: 1vmin;
+}
+
+span.value {
+    display: block;
+    font-size: 6vmin;
+}
+
+span.labelSpace {
+    margin-top: 3vmin;
+}
+
+span.bigvalue {
+    display: block;
+    clear: left;
+    font-size: 12vmin;
 }
 
 /* TABBAR */
 
 .Tabbar {
-    flex: 1;
+    margin-top: 1vmin;
+    height: 7vmin;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
 }
 
 .Tabbar__Button {
-    flex: 1;
+    background-color: #115522;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3vmin;
+    margin-right: 1vmin;
+    margin-left: 0;
+    padding: 1vmin;
+    border-radius: 1vmin;
 }
+
+.Tabbar__Button--selected {
+    background-color: #339944;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3vmin;
+    margin-right: 1vmin;
+    margin-left: 0;
+    padding: 1vmin;
+    border-radius: 1vmin;
+}
+
 
 /* TABS */
 
 .Tab {
-    flex: 10;
+    flex: 1;
+    display: flex;
+}
+
+.Tab__select {
+    height: 5vw;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-items: stretch;
+}
+
+/*
+VIDEO
+ */
+
+.video--hidden {
+    display: none;
+}
+
+.video__container {
+    flex: 1;
+    display: flex;
+}
+
+.video {
+    object-fit: contain;
+    flex: 1;
+    display: flex;
+}
+
+.video__button {
+    background-color: #334499;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 3vmin;
+    margin: 1vmin;
+    padding: 1vmin;
+    border-radius: 1vmin;
+}
+
+.video__select {
+    flex:1;
+    display: flex;
+    font-size: 3vmin;
+    margin: 1vmin 0 1vmin 1vmin;
+    padding: 1vmin;
+    border-radius: 1vmin;
 }

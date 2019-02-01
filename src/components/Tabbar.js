@@ -5,12 +5,14 @@ import { connect } from 'react-redux';
 import type { Tab } from '../utils/const';
 import { TABS } from '../utils/const';
 import { setTab } from '../redux/actions/navigation';
+import type { State } from '../redux/reducers';
 
 type TabbarCallback = (id: Tab) => void;
 type TabbarButtonProps = {
   id: Tab,
   onClick: TabbarCallback,
   children?: React.Node,
+  selected: boolean,
 };
 
 /**
@@ -18,16 +20,23 @@ type TabbarButtonProps = {
  * @param id
  * @param onClick
  * @param children
+ * @param selected
  * @returns {*}
  * @constructor
  */
-const TabbarButton = ({ id, onClick, children }: TabbarButtonProps) => {
+const TabbarButton = ({
+  id,
+  onClick,
+  children,
+  selected,
+}: TabbarButtonProps) => {
   const handleClick = () => {
     onClick(id);
   };
 
+  const className = selected ? 'Tabbar__Button--selected' : 'Tabbar__Button';
   return (
-    <button type="button" className="Tabbar__Button" onClick={handleClick}>
+    <button type="button" className={className} onClick={handleClick}>
       {children}
     </button>
   );
@@ -37,31 +46,41 @@ const TabbarButton = ({ id, onClick, children }: TabbarButtonProps) => {
  * Tabbar
  */
 type TabbarProps = {
+  selectedTab: Tab,
   setTab: typeof setTab,
 };
 
-const Tabbar = ({ setTab }: TabbarProps) => {
+const Tabbar = ({ setTab, selectedTab }: TabbarProps) => {
   const handleClick = (id: Tab) => {
+    // Todo move out of this component
     setTab(id);
   };
 
   return (
     <div className="Tabbar">
       {Object.keys(TABS).map(id => (
-        <TabbarButton key={id} id={id} onClick={handleClick}>
+        <TabbarButton
+          key={id}
+          id={id}
+          selected={id === selectedTab}
+          onClick={handleClick}
+        >
           {TABS[id]}
         </TabbarButton>
       ))}
-      {/*<TabbarButton id={'select'} onClick={onClick}>Entertainment Select</TabbarButton>*/}
-      {/*<TabbarButton id={'entertainment'} onClick={onClick}>Entertainment View</TabbarButton>*/}
     </div>
   );
 };
 
+const mapStateToProps = (state: State /*, ownProps*/) => {
+  return {
+    selectedTab: state.navigation.tab,
+  };
+};
 const mapDispatchToProps = { setTab };
 
 const TabbarContainer = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Tabbar);
 

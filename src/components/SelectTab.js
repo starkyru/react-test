@@ -1,20 +1,68 @@
 // @flow
 
 import React from 'react';
+import { PLAYLIST } from '../utils/const';
+import { setVideo } from '../redux/actions/ui';
+import type { State } from '../redux/reducers';
+import { connect } from 'react-redux';
 
-const SelectTab = () => {
+const SelectTab = ({
+  setVideo,
+  currentVideo,
+}: {
+  setVideo: typeof setVideo,
+  currentVideo: ?Object,
+}) => {
+  let _selectedVideo = currentVideo || PLAYLIST[0];
+  const handleChange = e => {
+    console.log(
+      PLAYLIST.find(element => element.id === e.target.value),
+      e.target.value
+    );
+    _selectedVideo = PLAYLIST.find(element => element.id === e.target.value);
+  };
+
+  const handleVideoSelect = () => {
+    setVideo(_selectedVideo);
+  };
+
   return (
-    <div className="Tab">
-      <h1>Entertainment Select</h1>
-      <p>
-        This tab should have dropdown to select from several video files and
-        button “Select” next to it. There should be preview region below the
-        dropdown. As apply is clicked the video should be autoplayed in the
-        preview region. If user clicks the video preview area after the source
-        was selected it should navigate to the “Entertainment View” tab
-      </p>
+    <div className="Tab__select">
+      <select className="video__select" onChange={handleChange}>
+        {PLAYLIST.map(video => (
+          <option key={video.id} value={video.id}>
+            {video.title}
+          </option>
+        ))}
+      </select>
+      <button
+        type="button"
+        className="video__button"
+        onClick={handleVideoSelect}
+      >
+        Select Video
+      </button>
     </div>
   );
 };
 
-export { SelectTab };
+/*
+Container
+ */
+
+const mapStateToProps = (state: State /*, ownProps*/) => {
+  return {
+    currentId: state.ui.video ? state.ui.video.id : null,
+  };
+};
+
+const mapDispatchToProps = {
+  setVideo,
+};
+
+const SelectTabContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SelectTab);
+
+export { SelectTabContainer as SelectTab };

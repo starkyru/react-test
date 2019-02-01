@@ -3,32 +3,86 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import type { StatusState } from '../redux/reducers/status';
+import { setImperial } from '../redux/actions/ui';
+import type { SetImperialAction } from '../redux/actions/ui';
+import { formatSecondsToHHMMSS, formatSecondsToMMSS } from '../utils';
+import { MILES_PER_KM } from '../utils/const';
 
-const DashboardTab = ({ status }: { status: StatusState }) => {
-  console.log(status);
+const SmallBox = ({
+  title,
+  value,
+}: {
+  title: string,
+  value: string | number,
+}) => {
   return (
-    <div className="Tab">
-      <h1>Dashboard</h1>
-      <p>
-        This tab should display name - value list with workout stat values.
-        There also should be a toggle between Metric and Imperial unit system.
-        When Imperial unit system is selected speed should be converted to mph,
-        pace to min/mile and distance to miles speed, grade should be formatted
-        with 1 decimal place, duration and duration_countdown as hh:mm:ss. pace
-        as mm:ss, distance - two decimal places, heart_rate and calories -
-        displayed as floored integer.
-      </p>
+    <div className="smallbox">
+      <span className="label">{title}</span>
+      <span className="value">{value}</span>
+    </div>
+  );
+};
 
-      <div>"duration": {status.duration}</div>
-      <div>"duration_countdown": {status.duration_countdown}</div>
-      <div>"calories": {status.calories}</div>
-      <div>"speed": {status.speed}</div>
-      <div>"grade": {status.grade},</div>
-      <div>"heart_rate": {status.heart_rate}</div>
-      <div>"pace": {status.pace}</div>
-      <div>"distance": {status.distance}</div>
-      <button type="button">metric</button>
-      <button type="button">imperial</button>
+const DashboardTab = ({
+  status,
+  imperial,
+  setImperial,
+}: {
+  status: StatusState,
+  imperial: boolean,
+  setImperial: SetImperialAction,
+}) => {
+  const changeMetricSystem = () => {
+    setImperial(!imperial);
+  };
+
+  const formatSpeed = speed =>
+    imperial
+      ? `${(speed * MILES_PER_KM).toFixed(1)} MPH`
+      : `${speed.toFixed(1)} KMH`;
+
+  const formatDistance = distance =>
+    imperial
+      ? `${(distance * MILES_PER_KM).toFixed(2)} MI`
+      : `${distance.toFixed(2)} KM`;
+
+  return (
+    <div className="Tab ">
+      <div className="Dashboard">
+        <div className="boxcolumn">
+          <SmallBox
+            title="Heart Rate"
+            value={Math.floor(status.heart_rate) + ' BPM'}
+          />
+          <SmallBox
+            title="Duration"
+            value={formatSecondsToHHMMSS(status.duration)}
+          />
+          <SmallBox
+            title="Duration Countdown"
+            value={formatSecondsToHHMMSS(status.duration_countdown)}
+          />
+        </div>
+
+        <div className="bigbox">
+          <span className="label">Distance</span>
+          <span className="bigvalue">{formatDistance(status.distance)}</span>
+          <span className="label labelSpace">Speed</span>
+          <span className="bigvalue">{formatSpeed(status.speed)}</span>
+
+          <button type="button" onClick={changeMetricSystem}>
+            {imperial ? 'Switch to Metric' : 'Switch to Imperial'}
+          </button>
+        </div>
+
+        <div className="boxcolumn">
+          <SmallBox title="Calories" value={Math.floor(status.calories)} />
+          <SmallBox title="Grade" value={status.grade.toFixed(1) + '%'} />
+          <SmallBox title="Pace" value={formatSecondsToMMSS(status.pace)} />
+        </div>
+      </div>
+
+      <div id="video-hidden" />
     </div>
   );
 };
@@ -40,12 +94,17 @@ Container
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
     status: state.status,
+    imperial: state.ui.imperial,
   };
+};
+
+const mapDispatchToProps = {
+  setImperial,
 };
 
 const DashboardTabContainer = connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(DashboardTab);
 
 export { DashboardTabContainer as DashboardTab };
