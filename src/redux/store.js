@@ -13,18 +13,10 @@ const syncConfig = {
   broadcastChannelOption: { type: 'native' },
 };
 
-// const sagaMiddleware = createSagaMiddleware()
-
-const middlewares = [
-  thunkMiddleware,
-  createStateSyncMiddleware(syncConfig),
-  // sagaMiddleware,
-];
+const middlewares = [thunkMiddleware, createStateSyncMiddleware(syncConfig)];
 
 const middleware = composeWithDevTools(applyMiddleware(...middlewares));
 
 const store = createStore(rootReducer, middleware);
-
-// sagaMiddleware.run(rootSaga)
 
 export { store };
