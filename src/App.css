@@ -73,6 +73,7 @@ body, .root {
 span.label {
     display: block;
     margin-bottom: 1vmin;
+    text-align: center;
 }
 
 span.value {
@@ -110,7 +111,7 @@ span.bigvalue {
     font-size: 3vmin;
     margin-right: 1vmin;
     margin-left: 0;
-    padding: 1vmin;
+    padding: 1vmin 2vmin;
     border-radius: 1vmin;
 }
 
@@ -124,7 +125,7 @@ span.bigvalue {
     font-size: 3vmin;
     margin-right: 1vmin;
     margin-left: 0;
-    padding: 1vmin;
+    padding: 1vmin 2vmin;
     border-radius: 1vmin;
 }
 
@@ -137,7 +138,7 @@ span.bigvalue {
 }
 
 .Tab__select {
-    height: 5vw;
+    height: 6vh;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -170,16 +171,16 @@ VIDEO
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 3vmin;
-    margin: 1vmin;
-    padding: 1vmin;
-    border-radius: 1vmin;
+    font-size: 2vh;
+    margin: 1vh;
+    padding: 1vh 2vh;
+    border-radius: 0.5vh;
 }
 
 .video__select {
     flex:1;
     display: flex;
-    font-size: 3vmin;
+    font-size: 2vh;
     margin: 1vmin 0 1vmin 1vmin;
     padding: 1vmin;
     border-radius: 1vmin;

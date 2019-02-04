@@ -32,7 +32,7 @@ const startFakeApi = (timeout: number = WORKOUT_DURATION_MS) => dispatch => {
       dispatch(fakeApiSendMessage(_timeCounter, timeout - _timeCounter));
     }
   }, API_FREQUENCY);
-  dispatch(fakeApiSendMessage());
+  dispatch(fakeApiSendMessage(_timeCounter, timeout - _timeCounter));
 };
 
 const fakeApiSendMessage = (time: number, timeLeft: number) =>

@@ -76,7 +76,7 @@ const DashboardTab = ({
         </div>
 
         <div className="boxcolumn">
-          <SmallBox title="Calories" value={Math.floor(status.calories)} />
+          <SmallBox title="Calories" value={Math.floor(status.calories) || 0} />
           <SmallBox title="Grade" value={status.grade.toFixed(1) + '%'} />
           <SmallBox title="Pace" value={formatSecondsToMMSS(status.pace)} />
         </div>

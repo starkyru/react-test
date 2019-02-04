@@ -1,6 +1,6 @@
 // @flow
 
-import React, { Component } from 'react';
+import * as React from 'react';
 
 type VideoProps = {
   title: string,
@@ -10,7 +10,22 @@ type VideoProps = {
   onClick: () => void,
 };
 
-class Video extends Component<VideoProps, null> {
+class Video extends React.PureComponent<VideoProps, null> {
+  _videoRef: { current: null | HTMLVideoElement };
+
+  constructor(props: VideoProps) {
+    super(props);
+    this._videoRef = React.createRef<HTMLVideoElement>();
+  }
+
+  play() {
+    this._videoRef.current && this._videoRef.current.play();
+  }
+
+  pause() {
+    this._videoRef.current && this._videoRef.current.pause();
+  }
+
   render() {
     const { videos, thumb, visible, onClick } = this.props;
     return (
@@ -19,10 +34,10 @@ class Video extends Component<VideoProps, null> {
         style={{ display: visible ? '' : 'none' }}
       >
         <video
+          ref={this._videoRef}
           className="video"
           controls
           poster={thumb}
-          autoPlay
           onClick={onClick}
         >
           {videos.mp4 && <source src={videos.mp4} type="video/mp4" />}

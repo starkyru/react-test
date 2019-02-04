@@ -47,7 +47,7 @@ const TabbarButton = ({
  */
 type TabbarProps = {
   selectedTab: Tab,
-  setTab: typeof setTab,
+  setTab: $Call<typeof setTab>,
 };
 
 const Tabbar = ({ setTab, selectedTab }: TabbarProps) => {

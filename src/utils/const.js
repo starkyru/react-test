@@ -1,10 +1,15 @@
 // @flow
+import uuid from 'random-uuid-v4';
 
 /**
  * Application aspect ratio
  * @type {number}
  */
 const ASPECT_RATIO = 1024 / 600;
+
+/**
+ * Navigation tabs
+ */
 const TABS = {
   dashboard: 'Dashboard',
   select: 'Entertainment Select',
@@ -12,7 +17,21 @@ const TABS = {
 };
 type Tab = $Keys<typeof TABS>;
 
-const PLAYLIST = [
+/**
+ * Video dropdown items
+ * @type {*[]}
+ */
+type VideoItem = {|
+  id: string,
+  title: string,
+  videos: {
+    webm: ?string,
+    ogg: ?string,
+    mp4: ?string,
+  },
+  thumb: string,
+|};
+const PLAYLIST: Array<VideoItem> = [
   {
     id: 'bb1',
     title: 'Big Buck Bunny',
@@ -49,6 +68,8 @@ const MILES_PER_KM = 0.621371;
 const WORKOUT_DURATION_MS = 30 * 60 * 1000;
 const API_FREQUENCY = 500;
 
+const UUID = uuid();
+
 export {
   ASPECT_RATIO,
   TABS,
@@ -56,5 +77,6 @@ export {
   MILES_PER_KM,
   WORKOUT_DURATION_MS,
   API_FREQUENCY,
+  UUID,
 };
-export type { Tab };
+export type { Tab, VideoItem };
