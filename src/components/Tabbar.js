@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import type { Tab } from '../utils/const';
 import { TABS } from '../utils/const';
 import { setTab } from '../redux/actions/navigation';
+import type { SetTabActionCreator } from '../redux/actions/navigation';
 import type { State } from '../redux/reducers';
 
 type TabbarCallback = (id: Tab) => void;
@@ -47,7 +48,7 @@ const TabbarButton = ({
  */
 type TabbarProps = {
   selectedTab: Tab,
-  setTab: $Call<typeof setTab>,
+  setTab: SetTabActionCreator,
 };
 
 const Tabbar = ({ setTab, selectedTab }: TabbarProps) => {

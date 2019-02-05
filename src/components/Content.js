@@ -10,6 +10,7 @@ import { setTab } from '../redux/actions/navigation';
 import { Video } from './Video';
 import type { State } from '../redux/reducers';
 import type { Tab } from '../redux/reducers/navigation';
+import type { SetTabActionCreator } from '../redux/actions/navigation';
 import { UUID } from '../utils/const';
 
 /**
@@ -19,7 +20,7 @@ type ContentProps = {
   selectedTab: Tab,
   video: Object,
   startFakeApi: $Call<typeof startFakeApi>,
-  setTab: $Call<typeof setTab>,
+  setTab: SetTabActionCreator,
   masterUUID: string,
 };
 

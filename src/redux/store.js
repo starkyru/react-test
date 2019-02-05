@@ -1,3 +1,6 @@
+/**
+ * Redux store setup
+ */
 import { createStore, applyMiddleware } from 'redux';
 import { rootReducer } from './reducers';
 import thunkMiddleware from 'redux-thunk';

@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import type { StatusState } from '../redux/reducers/status';
 import { setImperial } from '../redux/actions/ui';
-import type { SetImperialAction } from '../redux/actions/ui';
 import { formatSecondsToHHMMSS, formatSecondsToMMSS } from '../utils';
 import { MILES_PER_KM } from '../utils/const';
 
@@ -16,7 +15,7 @@ const SmallBox = ({
   value: string | number,
 }) => {
   return (
-    <div className="smallbox">
+    <div className="Dashboard__smallbox">
       <span className="label">{title}</span>
       <span className="value">{value}</span>
     </div>
@@ -30,7 +29,7 @@ const DashboardTab = ({
 }: {
   status: StatusState,
   imperial: boolean,
-  setImperial: SetImperialAction,
+  setImperial: boolean => any,
 }) => {
   const changeMetricSystem = () => {
     setImperial(!imperial);
@@ -49,7 +48,7 @@ const DashboardTab = ({
   return (
     <div className="Tab ">
       <div className="Dashboard">
-        <div className="boxcolumn">
+        <div className="Dashboard__boxcolumn">
           <SmallBox
             title="Heart Rate"
             value={Math.floor(status.heart_rate) + ' BPM'}
@@ -64,7 +63,7 @@ const DashboardTab = ({
           />
         </div>
 
-        <div className="bigbox">
+        <div className="Dashboard__bigbox">
           <span className="label">Distance</span>
           <span className="bigvalue">{formatDistance(status.distance)}</span>
           <span className="label labelSpace">Speed</span>
@@ -75,7 +74,7 @@ const DashboardTab = ({
           </button>
         </div>
 
-        <div className="boxcolumn">
+        <div className="Dashboard__boxcolumn">
           <SmallBox title="Calories" value={Math.floor(status.calories) || 0} />
           <SmallBox title="Grade" value={status.grade.toFixed(1) + '%'} />
           <SmallBox title="Pace" value={formatSecondsToMMSS(status.pace)} />

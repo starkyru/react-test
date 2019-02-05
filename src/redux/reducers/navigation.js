@@ -1,23 +1,31 @@
-// @flow
+/**
+ * Navigation reducer
+ *
+ * @flow
+ */
 import { createReducer } from '../../utils/reduxUtils';
 
-import type { NavigationAction } from '../actions/navigation';
+import type { NavigationAction, SetTabAction } from '../actions/navigation';
 import { SET_TAB } from '../actions/navigation';
 import type { Tab } from '../../utils/const';
 import { TABS } from '../../utils/const';
 
-const initialState = {
+type NavigationState = {|
+  tab: Tab,
+|};
+
+const initialState: NavigationState = {
   tab: Object.keys(TABS)[0],
 };
 
-type NavigationState = typeof initialState;
 // eslint-disable-next-line
-const NavigationReducer = createReducer<NavigationState, typeof NavigationReducer>(initialState, {
-  [SET_TAB]: (state: NavigationState, action: NavigationAction) => ({
-    ...state,
-    tab: action.payload,
-  }),
-});
+const navigationReducer = createReducer<NavigationState, NavigationAction>(initialState, {
+    [SET_TAB]: (state: NavigationState, action: SetTabAction) => ({
+      ...state,
+      tab: (action: SetTabAction).payload,
+    }),
+  }
+);
 
-export { NavigationReducer };
+export { navigationReducer };
 export type { NavigationAction, NavigationState, Tab };

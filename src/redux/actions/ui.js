@@ -1,13 +1,24 @@
 /**
- * Dashboard status and Fake API
+ * UI actions
+ *
+ * @flow
  */
 import type { VideoItem } from '../../utils/const';
 import { UUID } from '../../utils/const';
 
 const SET_VIDEO = 'SET_VIDEO';
-type SetVideoAction = $Call<typeof setVideo>;
+type SetVideoAction = {|
+  type: typeof SET_VIDEO,
+  payload: {|
+    video: VideoItem,
+    master: string,
+  |},
+|};
 
-// TODO: add Flowtype for message
+type SetVideoActionCreator = (
+  $PropertyType<SetVideoAction, 'payload'>
+) => SetVideoAction;
+
 const setVideo = (video: VideoItem): SetVideoAction => {
   return {
     type: SET_VIDEO,
@@ -19,10 +30,18 @@ const setVideo = (video: VideoItem): SetVideoAction => {
 };
 
 const SET_SELECTED_VIDEO = 'SET_SELECTED_VIDEO';
-type SetSelectedVideoAction = $Call<typeof setSelectedVideo>;
+type SetSelectedVideoAction = {|
+  type: typeof SET_SELECTED_VIDEO,
+  payload: $PropertyType<VideoItem, 'id'>,
+|};
 
-// TODO: add Flowtype for message
-const setSelectedVideo = (videoId: string): SetSelectedVideoAction => {
+type SetSelectedVideoActionCreator = (
+  $PropertyType<SetSelectedVideoAction, 'payload'>
+) => SetSelectedVideoAction;
+
+const setSelectedVideo = (
+  videoId: $PropertyType<VideoItem, 'id'>
+): SetSelectedVideoAction => {
   return {
     type: SET_SELECTED_VIDEO,
     payload: videoId,
@@ -30,18 +49,37 @@ const setSelectedVideo = (videoId: string): SetSelectedVideoAction => {
 };
 
 const SET_IMPERIAL = 'SET_IMPERIAL';
-type SetImperialAction = $Call<typeof setImperial>;
+type SetImperialAction = {|
+  type: typeof SET_IMPERIAL,
+  payload: {
+    imperial: boolean,
+  },
+|};
+
+type SetImperialActionCreator = (
+  $PropertyType<SetImperialAction, 'payload'>
+) => SetImperialAction;
 
 const setImperial = (imperial: boolean): SetImperialAction => {
   return {
     type: SET_IMPERIAL,
-    payload: imperial,
+    payload: {
+      imperial,
+    },
   };
 };
 
-type UIAction = SetVideoAction | SetImperialAction;
+type UIAction = SetVideoAction | SetSelectedVideoAction | SetImperialAction;
 
-export type { UIAction, SetImperialAction, SetVideoAction };
+export type {
+  UIAction,
+  SetImperialAction,
+  SetVideoAction,
+  SetSelectedVideoAction,
+  SetVideoActionCreator,
+  SetImperialActionCreator,
+  SetSelectedVideoActionCreator,
+};
 export {
   setVideo,
   SET_VIDEO,

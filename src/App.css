@@ -33,22 +33,22 @@ body, .root {
     display: flex;
 }
 
-.boxcolumn {
+.Dashboard__boxcolumn {
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
     display: flex;
 }
 
-.boxcolumn > div {
+.Dashboard__boxcolumn > div {
     margin-top: 1vmin;
 }
 
-.boxcolumn > div:first-child {
+.Dashboard__boxcolumn > div:first-child {
     margin-top: 0;
 }
 
-.bigbox {
+.Dashboard__bigbox {
     flex: 2;
     flex-direction: column;
     background: #0A1427;
@@ -60,7 +60,7 @@ body, .root {
     align-items: center;
 }
 
-.smallbox {
+.Dashboard__smallbox {
     flex: 1;
     flex-direction: column;
     background: #0D1323;
@@ -70,22 +70,22 @@ body, .root {
     align-items: center;
 }
 
-span.label {
+.Dashboard span.label {
     display: block;
     margin-bottom: 1vmin;
     text-align: center;
 }
 
-span.value {
+.Dashboard span.value {
     display: block;
     font-size: 6vmin;
 }
 
-span.labelSpace {
+.Dashboard span.labelSpace {
     margin-top: 3vmin;
 }
 
-span.bigvalue {
+.Dashboard span.bigvalue {
     display: block;
     clear: left;
     font-size: 12vmin;

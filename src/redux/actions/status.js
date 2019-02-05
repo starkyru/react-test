@@ -1,7 +1,9 @@
 /**
  * Dashboard status and Fake API
+ *
+ * @flow
  */
-
+import type { Dispatch } from 'redux';
 import { API_FREQUENCY, WORKOUT_DURATION_MS } from '../../utils/const';
 
 const SET_STATUS = 'SET_STATUS';
@@ -18,8 +20,10 @@ const setStatus = (message: Object): SetStatusAction => {
 
 let _timer = null;
 
-const startFakeApi = (timeout: number = WORKOUT_DURATION_MS) => dispatch => {
-  clearInterval(_timer);
+const startFakeApi = (timeout: number = WORKOUT_DURATION_MS) => (
+  dispatch: Dispatch
+) => {
+  _timer && clearInterval(_timer);
   const _startTime = Date.now();
   const _timeout = _startTime + timeout;
   let _timeCounter = 0;
@@ -48,7 +52,7 @@ const fakeApiSendMessage = (time: number, timeLeft: number) =>
   });
 
 const stopFakeApi = () => {
-  clearInterval(_timer);
+  _timer && clearInterval(_timer);
 };
 
 type StatusAction = SetStatusAction; // | another_action

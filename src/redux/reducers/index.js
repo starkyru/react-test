@@ -1,13 +1,18 @@
+/**
+ * Combined app reducer
+ *
+ * @flow
+ */
 import { combineReducers } from 'redux';
 
-import { NavigationReducer } from './navigation';
-import { StatusReducer } from './status';
-import { UIReducer } from './ui';
+import { navigationReducer } from './navigation';
+import { statusReducer } from './status';
+import { uiReducer } from './ui';
 
 const rootReducer = combineReducers({
-  navigation: NavigationReducer,
-  status: StatusReducer,
-  ui: UIReducer,
+  navigation: navigationReducer,
+  status: statusReducer,
+  ui: uiReducer,
 });
 
 type Reducers = typeof rootReducer;

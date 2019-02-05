@@ -1,4 +1,6 @@
-// @flow
+/**
+ *
+ */
 import uuid from 'random-uuid-v4';
 
 /**

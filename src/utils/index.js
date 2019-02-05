@@ -1,3 +1,8 @@
+/**
+ * Some utils
+ * @param timeInSeconds
+ * @returns {string}
+ */
 const formatSecondsToHHMMSS = (timeInSeconds: number): string => {
   if (!timeInSeconds) return '00:00:00';
   let hours = Math.floor(timeInSeconds / 3600);

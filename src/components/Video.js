@@ -1,4 +1,8 @@
-// @flow
+/**
+ * Video component
+ *
+ * @flow
+ */
 
 import * as React from 'react';
 
@@ -29,10 +33,7 @@ class Video extends React.PureComponent<VideoProps, null> {
   render() {
     const { videos, thumb, visible, onClick } = this.props;
     return (
-      <div
-        className="video__container"
-        style={{ display: visible ? '' : 'none' }}
-      >
+      <div className={'video__container' + (visible ? '' : ' video--hidden')}>
         <video
           ref={this._videoRef}
           className="video"

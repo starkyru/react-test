@@ -4,17 +4,16 @@
  * @flow
  */
 
-type Reducer<State, Action> = (State, Action) => State;
+type Reducer<State> = (State, Action: any) => State;
+type Action = any;
 
-const createReducer = <State, Action>(
+const createReducer = <State: Object>(
   initialState: State,
-  handlers: { [key: string]: Reducer<State, Action> }
-): Reducer<State, Action> => {
+  handlers: { [key: string]: Reducer<State> }
+): Reducer<State> => {
   return (state: State = initialState, action: Action): State => {
-    // $FlowFixMe
     return handlers.hasOwnProperty(action.type)
-      ? // $FlowFixMe
-        handlers[action.type](state, action)
+      ? handlers[action.type](state, (action: typeof action))
       : state;
   };
 };
