@@ -35,9 +35,9 @@ If user clicks the video preview area after the source was selected it should na
 * Entertainment View (tab3)
 This tab should have video element taking all the content above the tab bar. It should play the same video source selected on tab2. Video playback should not restart on switching between tab2 and tab3, only video element size should increase. Also if video source is selected and user switches to “Dashboard” tab, video gets hidden but audio should keep playing.
 
-#####Optional
+####Optional
 These are not necessary but becomes a plus
 * Two instances of application opened in two tabs of the same browser should sync page
 location and entertainment video selection.
 i.e navigating to entertainment view tab in app instance 1 switches app instance 2 to entertainment view as well
-● Using type checking with Flow or Typescript
+* Using type checking with Flow or Typescript
