@@ -1,6 +1,6 @@
 // @flow
 
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   aspectRatio: number,
@@ -9,7 +9,7 @@ type Props = {
 };
 
 function ResizeContainer({ aspectRatio, className, children }: Props) {
-  const [dimensions, setDimensions] = React.useState({
+  const [dimensions, setDimensions] = useState({
     width: 1,
     height: 1,
   });
@@ -32,11 +32,11 @@ function ResizeContainer({ aspectRatio, className, children }: Props) {
     setDimensions({ width, height });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     window.addEventListener('resize', updateDimensions);
     updateDimensions();
     return () => {
-      window.removeEventListener('resize', this.updateDimensions);
+      window.removeEventListener('resize', updateDimensions);
     };
   });
 
