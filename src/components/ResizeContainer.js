@@ -1,36 +1,20 @@
 // @flow
 
-import * as React from 'react';
-
-type State = {
-  width: number,
-  height: number,
-};
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   aspectRatio: number,
   className: string,
   children?: React.Node,
 };
-class ResizeContainer extends React.Component<Props, State> {
-  state = {
+
+function useWindowDimensionsHook() {
+  const [dimensions, setDimensions] = useState({
     width: 1,
     height: 1,
-  };
+  });
 
-  componentWillMount() {
-    this.updateDimensions();
-  }
-
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
-  }
-
-  updateDimensions = () => {
+  function updateDimensions() {
     const w = window;
     const d = document;
     const documentElement = d.documentElement;
@@ -45,37 +29,46 @@ class ResizeContainer extends React.Component<Props, State> {
       body.clientHeight ||
       1;
 
-    this.setState({ width, height });
-  };
-
-  render() {
-    const { width, height } = this.state;
-    const { aspectRatio, children, className } = this.props;
-
-    let contentWidth;
-    let contentHeight;
-    if (width / height > aspectRatio) {
-      contentHeight = height;
-      contentWidth = height * aspectRatio;
-    } else {
-      contentWidth = width;
-      contentHeight = width / aspectRatio;
-    }
-
-    return (
-      <div
-        className={className}
-        style={{
-          height: contentHeight,
-          width: contentWidth,
-          left: (width - contentWidth) / 2,
-          top: (height - contentHeight) / 2,
-        }}
-      >
-        {children}
-      </div>
-    );
+    setDimensions({ width, height });
   }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateDimensions);
+    updateDimensions();
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  });
+
+  return dimensions;
+}
+
+function ResizeContainer({ aspectRatio, className, children }: Props) {
+  const { width, height } = useWindowDimensionsHook();
+
+  let contentWidth;
+  let contentHeight;
+  if (width / height > aspectRatio) {
+    contentHeight = height;
+    contentWidth = height * aspectRatio;
+  } else {
+    contentWidth = width;
+    contentHeight = width / aspectRatio;
+  }
+
+  return (
+    <div
+      className={className}
+      style={{
+        height: contentHeight,
+        width: contentWidth,
+        left: (width - contentWidth) / 2,
+        top: (height - contentHeight) / 2,
+      }}
+    >
+      {children}
+    </div>
+  );
 }
 
 export { ResizeContainer };
