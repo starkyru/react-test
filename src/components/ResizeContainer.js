@@ -8,7 +8,7 @@ type Props = {
   children?: React.Node,
 };
 
-function ResizeContainer({ aspectRatio, className, children }: Props) {
+function useWindowDimensionsHook() {
   const [dimensions, setDimensions] = useState({
     width: 1,
     height: 1,
@@ -40,7 +40,11 @@ function ResizeContainer({ aspectRatio, className, children }: Props) {
     };
   });
 
-  const { width, height } = dimensions;
+  return dimensions;
+}
+
+function ResizeContainer({ aspectRatio, className, children }: Props) {
+  const { width, height } = useWindowDimensionsHook();
 
   let contentWidth;
   let contentHeight;
