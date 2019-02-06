@@ -8,7 +8,8 @@ type Props = {
   children?: React.Node,
 };
 
-function useWindowDimensionsHook() {
+type UseDimensionsHook = {| width: number, height: number |};
+function useWindowDimensionsHook(): UseDimensionsHook {
   const [dimensions, setDimensions] = React.useState({
     width: 1,
     height: 1,
@@ -43,13 +44,17 @@ function useWindowDimensionsHook() {
   return dimensions;
 }
 
+type Box = {|
+  left: number,
+  top: number,
+  width: number,
+  height: number,
+|};
+
 function useAspectRatioHook(
   aspectRatio,
-  parentDimensionsHook: () => {
-    width: number,
-    height: number,
-  } = useWindowDimensionsHook
-) {
+  parentDimensionsHook: () => UseDimensionsHook = useWindowDimensionsHook
+): Box {
   const { width: windowWidth, height: windowHeight } = parentDimensionsHook();
 
   let width;
