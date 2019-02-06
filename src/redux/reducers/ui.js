@@ -20,7 +20,6 @@ type UIState = {|
   video: ?VideoItem,
   selectedVideo: string,
   master: string, // UUID of app set current video object
-  seed: number, // Updated with random on every SET_VIDEO
   imperial: boolean,
 |};
 
@@ -28,7 +27,6 @@ const initialState: UIState = {
   video: null,
   selectedVideo: PLAYLIST[0].id,
   master: '',
-  seed: 0,
   imperial: false,
 };
 
@@ -41,7 +39,6 @@ const uiReducer = createReducer<UIState>(initialState, {
   [SET_VIDEO]: (state: UIState, action: SetVideoAction) => ({
     ...state,
     video: { ...action.payload.video },
-    seed: Math.random(),
     master: action.payload.master,
   }),
   [SET_IMPERIAL]: (state: UIState, action: SetImperialAction) => ({
