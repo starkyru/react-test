@@ -5,19 +5,10 @@
  */
 import { createReducer } from '../../utils/reduxUtils';
 
-import type { StatusAction } from '../actions/status';
+import type { StatusAction, Status } from '../actions/status';
 import { SET_STATUS } from '../actions/status';
 
-type StatusState = {|
-  duration: number,
-  duration_countdown: number,
-  calories: number,
-  speed: number,
-  grade: number,
-  heart_rate: number,
-  pace: number,
-  distance: number,
-|};
+type StatusState = Status;
 
 const initialState: StatusState = {
   duration: 0, // seconds

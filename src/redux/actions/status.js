@@ -8,10 +8,24 @@ import { API_FREQUENCY, WORKOUT_DURATION_MS } from '../../utils/const';
 
 const SET_STATUS = 'SET_STATUS';
 
-type SetStatusAction = $Call<typeof setStatus>;
+type Status = {|
+  duration: number,
+  duration_countdown: number,
+  calories: number,
+  speed: number,
+  grade: number,
+  heart_rate: number,
+  pace: number,
+  distance: number,
+|};
+
+type SetStatusAction = {|
+  type: typeof SET_STATUS,
+  payload: Status,
+|};
 
 // TODO: add Flowtype for message
-const setStatus = (message: Object): SetStatusAction => {
+const setStatus = (message: Status): SetStatusAction => {
   return {
     type: SET_STATUS,
     payload: message,
@@ -57,5 +71,5 @@ const stopFakeApi = () => {
 
 type StatusAction = SetStatusAction; // | another_action
 
-export type { StatusAction };
+export type { StatusAction, Status };
 export { SET_STATUS, startFakeApi, stopFakeApi, setStatus };
