@@ -45,6 +45,8 @@ const DashboardTab = ({
       ? `${(distance * MILES_PER_KM).toFixed(2)} MI`
       : `${distance.toFixed(2)} KM`;
 
+  const pace = imperial ? status.pace / MILES_PER_KM : status.pace;
+
   return (
     <div className="Tab ">
       <div className="Dashboard">
@@ -77,7 +79,7 @@ const DashboardTab = ({
         <div className="Dashboard__boxcolumn">
           <SmallBox title="Calories" value={Math.floor(status.calories) || 0} />
           <SmallBox title="Grade" value={status.grade.toFixed(1) + '%'} />
-          <SmallBox title="Pace" value={formatSecondsToMMSS(status.pace)} />
+          <SmallBox title="Pace" value={formatSecondsToMMSS(pace)} />
         </div>
       </div>
 
