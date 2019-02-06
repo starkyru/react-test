@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useEffect, useState } from 'react';
+import * as React from 'react';
 
 type Props = {
   aspectRatio: number,
@@ -9,7 +9,7 @@ type Props = {
 };
 
 function useWindowDimensionsHook() {
-  const [dimensions, setDimensions] = useState({
+  const [dimensions, setDimensions] = React.useState({
     width: 1,
     height: 1,
   });
@@ -32,7 +32,7 @@ function useWindowDimensionsHook() {
     setDimensions({ width, height });
   }
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.addEventListener('resize', updateDimensions);
     updateDimensions();
     return () => {
@@ -43,11 +43,14 @@ function useWindowDimensionsHook() {
   return dimensions;
 }
 
-function useAspectRatioHook(aspectRatio) {
-  const {
-    width: windowWidth,
-    height: windowHeight,
-  } = useWindowDimensionsHook();
+function useAspectRatioHook(
+  aspectRatio,
+  parentDimensionsHook: () => {
+    width: number,
+    height: number,
+  } = useWindowDimensionsHook
+) {
+  const { width: windowWidth, height: windowHeight } = parentDimensionsHook();
 
   let width;
   let height;
