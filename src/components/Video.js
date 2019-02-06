@@ -33,7 +33,11 @@ class Video extends React.PureComponent<VideoProps, null> {
   render() {
     const { videos, thumb, visible, onClick } = this.props;
     return (
-      <div className={'video__container' + (visible ? '' : ' video--hidden')}>
+      <div
+        className={
+          'video__container' + (visible ? '' : ' video__container--hidden')
+        }
+      >
         <video
           ref={this._videoRef}
           className="video"

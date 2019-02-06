@@ -149,8 +149,8 @@ body, .root {
 VIDEO
  */
 
-.video--hidden {
-    display: none;
+.video__container--hidden {
+    display: none !important;
 }
 
 .video__container {
