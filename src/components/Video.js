@@ -23,7 +23,11 @@ class Video extends React.PureComponent<VideoProps, null> {
   }
 
   play() {
-    this._videoRef.current && this._videoRef.current.play();
+    const video = this._videoRef.current;
+    if (video) {
+      video.currentTime = 0;
+      video.play();
+    }
   }
 
   pause() {

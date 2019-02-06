@@ -27,7 +27,8 @@ type ContentProps = {
 class Content extends React.Component<ContentProps, *> {
   componentDidMount(): void {
     this.props.startFakeApi();
-    this.props.setTab('dashboard');
+    //
+    // this.props.setTab('dashboard');
   }
 
   componentDidUpdate(prevProps: ContentProps): void {
@@ -37,7 +38,7 @@ class Content extends React.Component<ContentProps, *> {
       UUID === this.props.masterUUID &&
       (!prevProps.video ||
         prevProps.video.id !== this.props.video.id ||
-        prevProps.video.seed !== this.props.video.seed)
+        prevProps.video !== this.props.video)
     ) {
       this._videoComponentRef.play();
     } else if (UUID !== this.props.masterUUID) {
