@@ -43,29 +43,34 @@ function useWindowDimensionsHook() {
   return dimensions;
 }
 
-function ResizeContainer({ aspectRatio, className, children }: Props) {
-  const { width, height } = useWindowDimensionsHook();
+function useAspectRatioHook(aspectRatio) {
+  const {
+    width: windowWidth,
+    height: windowHeight,
+  } = useWindowDimensionsHook();
 
-  let contentWidth;
-  let contentHeight;
-  if (width / height > aspectRatio) {
-    contentHeight = height;
-    contentWidth = height * aspectRatio;
+  let width;
+  let height;
+  if (windowWidth / windowHeight > aspectRatio) {
+    height = windowHeight;
+    width = windowHeight * aspectRatio;
   } else {
-    contentWidth = width;
-    contentHeight = width / aspectRatio;
+    width = windowWidth;
+    height = windowWidth / aspectRatio;
   }
+  return {
+    width,
+    height,
+    left: (windowWidth - width) / 2,
+    top: (windowHeight - height) / 2,
+  };
+}
+
+function ResizeContainer({ aspectRatio, className, children }: Props) {
+  const dimensions = useAspectRatioHook(aspectRatio);
 
   return (
-    <div
-      className={className}
-      style={{
-        height: contentHeight,
-        width: contentWidth,
-        left: (width - contentWidth) / 2,
-        top: (height - contentHeight) / 2,
-      }}
-    >
+    <div className={className} style={dimensions}>
       {children}
     </div>
   );
