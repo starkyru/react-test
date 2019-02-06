@@ -3,8 +3,8 @@
  *
  * @flow
  */
-import type { VideoItem } from '../../utils/const';
-import { UUID } from '../../utils/const';
+import type { VideoItem } from '../../core/const';
+import { UUID } from '../../core/const';
 
 const SET_VIDEO = 'SET_VIDEO';
 type SetVideoAction = {|

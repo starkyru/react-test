@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import './App.css';
 
 import { Content } from './components/Content';
-import { ASPECT_RATIO } from './utils/const';
+import { ASPECT_RATIO } from './core/const';
 import { ResizeContainer } from './components/ResizeContainer';
 import { store } from './redux/store';
 

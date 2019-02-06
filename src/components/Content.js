@@ -11,7 +11,7 @@ import { Video } from './Video';
 import type { State } from '../redux/reducers';
 import type { Tab } from '../redux/reducers/navigation';
 import type { SetTabActionCreator } from '../redux/actions/navigation';
-import { UUID } from '../utils/const';
+import { UUID } from '../core/const';
 
 /**
  * App content itself

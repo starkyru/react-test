@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import type { Tab } from '../utils/const';
-import { TABS } from '../utils/const';
+import type { Tab } from '../core/const';
+import { TABS } from '../core/const';
 import { setTab } from '../redux/actions/navigation';
 import type { SetTabActionCreator } from '../redux/actions/navigation';
 import type { State } from '../redux/reducers';

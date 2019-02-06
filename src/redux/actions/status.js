@@ -4,7 +4,7 @@
  * @flow
  */
 import type { Dispatch } from 'redux';
-import { API_FREQUENCY, WORKOUT_DURATION_MS } from '../../utils/const';
+import { API_FREQUENCY, WORKOUT_DURATION_MS } from '../../core/const';
 
 const SET_STATUS = 'SET_STATUS';
 

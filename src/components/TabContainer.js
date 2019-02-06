@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { DashboardTab } from './DashboardTab';
-import { EntertainmentTab } from './EntertainmentTab';
-import { SelectTab } from './SelectTab';
-import { type Tab } from '../utils/const';
+import { DashboardTab } from '../screens/DashboardTab';
+import { EntertainmentTab } from '../screens/EntertainmentTab';
+import { SelectTab } from '../screens/SelectTab';
+import { type Tab } from '../core/const';
 import type { State } from '../redux/reducers';
 
 type Props = {

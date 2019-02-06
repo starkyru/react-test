@@ -7,8 +7,8 @@ import { createReducer } from '../../utils/reduxUtils';
 
 import type { NavigationAction, SetTabAction } from '../actions/navigation';
 import { SET_TAB } from '../actions/navigation';
-import type { Tab } from '../../utils/const';
-import { TABS } from '../../utils/const';
+import type { Tab } from '../../core/const';
+import { TABS } from '../../core/const';
 
 type NavigationState = {|
   tab: Tab,

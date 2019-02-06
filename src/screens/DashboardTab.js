@@ -4,8 +4,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import type { StatusState } from '../redux/reducers/status';
 import { setImperial } from '../redux/actions/ui';
-import { formatSecondsToHHMMSS, formatSecondsToMMSS } from '../utils';
-import { MILES_PER_KM } from '../utils/const';
+import { formatSecondsToHHMMSS, formatSecondsToMMSS } from '../utils/dateUtils';
+import { MILES_PER_KM } from '../core/const';
 
 const SmallBox = ({
   title,

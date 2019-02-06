@@ -13,8 +13,8 @@ import type {
   UIAction,
 } from '../actions/ui';
 import { SET_IMPERIAL, SET_VIDEO, SET_SELECTED_VIDEO } from '../actions/ui';
-import { PLAYLIST } from '../../utils/const';
-import type { VideoItem } from '../../utils/const';
+import { PLAYLIST } from '../../core/const';
+import type { VideoItem } from '../../core/const';
 
 type UIState = {|
   video: ?VideoItem,

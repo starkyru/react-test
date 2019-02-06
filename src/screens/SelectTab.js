@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import { PLAYLIST } from '../utils/const';
+import { PLAYLIST } from '../core/const';
 import { setVideo, setSelectedVideo } from '../redux/actions/ui';
 import type { State } from '../redux/reducers';
 import { connect } from 'react-redux';
